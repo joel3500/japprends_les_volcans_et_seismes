@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://joel3500.github.io/japprends_les_volcans_et_seismes/sitemap.xml

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Défi avancé de géologie : volcans et séismes — Volcans, séismes et phénomènes naturels 14-17 ans</title>
+<meta name="description" content="Défi éducatif gratuit sur la géologie avancée (volcans, séismes, tectonique des plaques), pour les 14-17 ans, secondaire et cégep. Score, badges et explications." />
+<link rel="canonical" href="https://joel3500.github.io/japprends_les_volcans_et_seismes/tier_14_17.html" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  #langSwitcher { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 12px 12px 0; width: 100%; margin-bottom: 45px; }
+  .lang-btn { background: var(--clr-card); border: 1px solid var(--clr-muted); color: var(--clr-text); border-radius: 999px; font-family: inherit; font-size: .78rem; font-weight: 700; padding: 5px 11px; cursor: pointer; box-shadow: var(--shadow-soft); transition: background .2s, transform .15s; }
+  .lang-btn:hover { transform: translateY(-1px); }
+  .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  @media (max-width: 600px) { #langSwitcher { margin-bottom: 40px; } .lang-btn { font-size: .7rem; padding: 4px 8px; } }
+  .footer-support { margin-top: 10px; font-size: .82rem; color: var(--clr-muted); }
+  .footer-support-link { color: var(--accent); font-weight: 700; text-decoration: underline; }
+  .footer-support-link:hover { color: var(--accent-dark); }
+  .footer-share { font-weight: 700; font-size: .85rem; color: #1b3a5c; margin: 16px 0 0; }
+  .share-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+  .share-btn { display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: .78rem; font-weight: 700; text-decoration: none; color: #fff; transition: opacity .15s; font-family: inherit; cursor: pointer; border: none; }
+  .share-btn:hover { opacity: .85; color: #fff; }
+  .share-whatsapp  { background: #4fce74; }
+  .share-facebook  { background: #5b8ef0; }
+  .share-twitter   { background: #8b9db7; }
+  .share-linkedin  { background: #4a90d9; }
+  .share-telegram  { background: #4cb8e8; }
+  .share-snapchat  { background: #f7d000; color: #1a1a1a; }
+  .share-snapchat:hover { color: #1a1a1a; }
+  .share-instagram { background: #d1436b; }
+  .share-tiktok    { background: #ee2b59; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Défi avancé de géologie : volcans et séismes",
+  "description": "Défi éducatif gratuit sur la géologie avancée (volcans, séismes, tectonique des plaques), pour les 14-17 ans, secondaire et cégep. Score, badges et explications.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (navigateur web)",
+  "inLanguage": ["fr"],
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" },
+  "audience": { "@type": "PeopleAudience", "suggestedMinAge": 14 },
+  "author": { "@type": "Person", "name": "Joel Sandé" }
+}
+</script>
+</head>
+<body>
+
+<div id="langSwitcher"></div>
+
+<nav class="page-nav" aria-label="Choisir une tranche d'âge">
+  <a href="index.html" id="navHome">🏠 Accueil</a>
+  <a href="tier_3_6.html" id="navT36">🐣 3-6 ans</a>
+  <a href="tier_7_10.html" id="navT710">🧭 7-10 ans</a>
+  <a href="tier_11_13.html" id="navT1113">🧠 11-13 ans</a>
+  <a href="tier_14_17.html" aria-current="page" id="navT1417">🎓 14-17 ans</a>
+</nav>
+
+<header class="hero">
+  <h1 id="heroTitle">🌋 Défi avancé de géologie : volcans et séismes</h1>
+  <p class="tagline" id="heroTagline">Subduction, magnitude, tectonique des plaques : un défi complet pour le secondaire supérieur et le cégep !</p>
+</header>
+
+<main>
+  <div class="quiz-wrap">
+
+    <div class="mode-select" id="modeSelect">
+      <p class="topic-intro" id="topicIntro"></p>
+      <p class="intro" id="introText">Choisis la longueur du défi :</p>
+      <div class="mode-grid">
+        <button class="mode-card" data-len="8">
+          <span class="m-emoji" id="len-8-emoji">⚡</span>
+          <span class="m-title" id="len-8-title">Rapide</span>
+          <span class="m-sub" id="len-8-sub">8 questions</span>
+        </button>
+        <button class="mode-card" data-len="12">
+          <span class="m-emoji" id="len-12-emoji">🧭</span>
+          <span class="m-title" id="len-12-title">Complet</span>
+          <span class="m-sub" id="len-12-sub">12 questions</span>
+        </button>
+        <button class="mode-card" data-len="16">
+          <span class="m-emoji" id="len-16-emoji">📘</span>
+          <span class="m-title" id="len-16-title">Approfondi</span>
+          <span class="m-sub" id="len-16-sub">16 questions</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="quizScreen" style="display:none;">
+      <div class="quiz-topbar">
+        <span class="quiz-stat">⭐ <span id="statScoreLabel">Score</span> : <span id="scoreVal">0</span></span>
+        <span class="quiz-stat">🔥 <span id="statStreakLabel">Série</span> : <span id="streakVal">0</span></span>
+        <span class="quiz-stat">⏱️ <span id="timerVal">0</span> <span id="timerSuffix">s</span></span>
+      </div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+
+      <p class="question-eyebrow" id="qType">Question <span id="qIndex">1</span> / <span id="qTotal">12</span></p>
+      <span class="question-flag" id="qEmoji">🧭</span>
+      <p class="question-text" id="qText">…</p>
+
+      <div class="choices" id="choicesRow"></div>
+      <p class="feedback-msg" id="feedback"></p>
+    </div>
+
+    <div class="result-screen" id="resultScreen" style="display:none;">
+      <span class="result-badge" id="resultBadge">🏆</span>
+      <p class="result-score" id="resultScoreText">12 / 12</p>
+      <p class="result-best" id="resultBest"></p>
+      <p class="result-msg" id="resultMsg">Bravo !</p>
+      <div class="quiz-actions">
+        <button class="pill primary" id="playAgainBtn">🔄 Nouveau défi</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p id="footerText">&copy; Défi avancé de géologie : volcans et séismes — à but éducatif, dès 14 ans. Merci de partager ce jeu gratuitement !</p>
+    <p class="footer-share" id="footerShare">Partage-le à tout le monde — ça me donne la force de rester productif !</p>
+  <div class="share-buttons">
+    <a class="share-btn share-whatsapp" href="https://wa.me/?text=D%C3%A9couvre%20Volcans%2C%20s%C3%A9ismes%20et%20ph%C3%A9nom%C3%A8nes%20naturels%20%F0%9F%8C%8B%20https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F&text=D%C3%A9couvre%20Volcans%2C%20s%C3%A9ismes%20et%20ph%C3%A9nom%C3%A8nes%20naturels%20%F0%9F%8C%8B" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+    <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a class="share-btn share-telegram" href="https://t.me/share/url?url=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F&text=D%C3%A9couvre%20Volcans%2C%20s%C3%A9ismes%20et%20ph%C3%A9nom%C3%A8nes%20naturels%20%F0%9F%8C%8B" target="_blank" rel="noopener noreferrer">Telegram</a>
+    <a class="share-btn share-snapchat" href="https://www.snapchat.com/scan?attachmentUrl=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">Snapchat</a>
+    <button class="share-btn share-instagram" type="button" onclick="nativeShare('Instagram')">Instagram</button>
+    <button class="share-btn share-tiktok" type="button" onclick="nativeShare('TikTok')">TikTok</button>
+  </div>
+  <p class="footer-support" id="footerSupport">
+    <a class="footer-support-link" id="donateLink" href="https://passeportdusavoir.netlify.app/don.html" target="_blank" rel="noopener noreferrer">❤️ Faire un don</a><span id="footerSupportNote"> — les dons aident à financer ce site et à le garder gratuit pour tout le monde.</span>
+  </p>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+const STORAGE_KEY = 'japprends_les_volcans_et_seismesLang';
+const BEST_KEY = "japprends_les_volcans_et_seismes_14_17_best_";
+let currentLang = getLang(STORAGE_KEY);
+function t(){ return GAME_TRANSLATIONS[currentLang]; }
+
+let allQuestions = [];
+let qi = 0, score = 0, streak = 0, timer = 0, timerHandle = null, answered = false, roundLen = 12;
+
+const modeSelect = document.getElementById('modeSelect');
+const quizScreen = document.getElementById('quizScreen');
+const resultScreen = document.getElementById('resultScreen');
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function applyStaticText(){
+  const tr = t().t1417;
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
+  document.title = tr.title + " — Volcans, séismes et phénomènes naturels 14-17 ans";
+  document.getElementById('navHome').textContent = t().nav.home;
+  document.getElementById('navT36').textContent = t().nav.t36;
+  document.getElementById('navT710').textContent = t().nav.t710;
+  document.getElementById('navT1113').textContent = t().nav.t1113;
+  document.getElementById('navT1417').textContent = t().nav.t1417;
+  document.getElementById('heroTitle').textContent = '🌋 ' + tr.title;
+  document.getElementById('heroTagline').textContent = tr.tagline;
+  document.getElementById('topicIntro').textContent = tr.topicIntro || '';
+  document.getElementById('introText').textContent = tr.introText;
+  [8,12,16].forEach(len => {
+    document.getElementById('len-' + len + '-emoji').textContent = tr.lens[len].emoji;
+    document.getElementById('len-' + len + '-title').textContent = tr.lens[len].title;
+    document.getElementById('len-' + len + '-sub').textContent = tr.lens[len].sub;
+  });
+  document.getElementById('statScoreLabel').textContent = tr.statScore;
+  document.getElementById('statStreakLabel').textContent = tr.statStreak;
+  document.getElementById('timerSuffix').textContent = tr.timerSuffix;
+  document.getElementById('footerText').innerHTML = '&copy; ' + tr.footer;
+  document.getElementById('donateLink').textContent = t().donate;
+  document.getElementById('footerSupportNote').textContent = ' — ' + t().donateNote;
+  document.getElementById('footerShare').textContent = t().shareText;
+}
+
+function buildAssocQ(){
+  const assoc = t().t1417.assoc;
+  const [text, answer, emoji, explain] = shuffle(assoc)[0];
+  const distractors = shuffle(assoc.map(c => c[1]).filter(c => c !== answer)).slice(0,3);
+  return { type:'assoc', emoji: emoji, text: text, options: shuffle([answer, ...distractors]), correct: answer, explain: explain };
+}
+function buildTrueFalseQ(used){
+  const truefalse = t().t1417.truefalse;
+  let item;
+  do { item = shuffle(truefalse)[0]; } while (used.has(item.s) && used.size < truefalse.length);
+  used.add(item.s);
+  const tr = t().t1417;
+  return { type:'tf', emoji:'🤔', text: item.s, options: [tr.trueLabel, tr.falseLabel], correct: item.a ? tr.trueLabel : tr.falseLabel, explain: item.e };
+}
+function buildIdentQ(used){
+  const ident = t().t1417.ident;
+  let item;
+  do { item = shuffle(ident)[0]; } while (used.has(item.d) && used.size < ident.length);
+  used.add(item.d);
+  return { type:'ident', emoji: item.d.split(' ')[0], text: item.d.substring(item.d.indexOf(' ')+1), options: shuffle(item.opts), correct: item.a, explain: item.e };
+}
+
+function buildRound(len){
+  const usedTf = new Set(), usedId = new Set();
+  const qs = [];
+  for (let i=0;i<len;i++){
+    const r = i % 3;
+    if (r === 0) qs.push(buildAssocQ());
+    else if (r === 1) qs.push(buildTrueFalseQ(usedTf));
+    else qs.push(buildIdentQ(usedId));
+  }
+  return shuffle(qs);
+}
+
+function startQuiz(len){
+  roundLen = len;
+  allQuestions = buildRound(len);
+  qi = 0; score = 0; streak = 0; timer = 0;
+
+  modeSelect.style.display = 'none';
+  resultScreen.style.display = 'none';
+  quizScreen.style.display = 'block';
+  document.getElementById('qTotal').textContent = allQuestions.length;
+
+  clearInterval(timerHandle);
+  timerHandle = setInterval(() => {
+    timer++;
+    document.getElementById('timerVal').textContent = timer;
+  }, 1000);
+
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const tr = t().t1417;
+  const q = allQuestions[qi];
+  document.getElementById('qType').innerHTML = tr.typeLabels[q.type] + ' — ' + tr.questionLabel + ' <span id="qIndexInner">' + (qi+1) + '</span> / ' + allQuestions.length;
+  document.getElementById('qEmoji').textContent = q.emoji;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('scoreVal').textContent = score;
+  document.getElementById('streakVal').textContent = streak;
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'feedback-msg';
+  document.getElementById('progressFill').style.width = Math.round((qi / allQuestions.length) * 100) + '%';
+
+  const row = document.getElementById('choicesRow');
+  row.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => selectAnswer(btn, opt, q));
+    row.appendChild(btn);
+  });
+}
+
+function selectAnswer(btn, chosen, q){
+  if (answered) return;
+  answered = true;
+  document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+
+  const tr = t().t1417;
+  const feedback = document.getElementById('feedback');
+  if (chosen === q.correct){
+    btn.classList.add('correct');
+    score++; streak++;
+    feedback.textContent = tr.feedbackCorrectPrefix + (q.explain ? q.explain : '');
+    feedback.className = 'feedback-msg ok';
+  } else {
+    btn.classList.add('wrong');
+    streak = 0;
+    document.querySelectorAll('.choice-btn').forEach(b => { if (b.textContent === q.correct) b.classList.add('reveal'); });
+    feedback.textContent = tr.feedbackWrongPrefix + q.correct + (q.explain ? '. ' + q.explain : '');
+    feedback.className = 'feedback-msg no';
+  }
+  document.getElementById('scoreVal').textContent = score;
+  document.getElementById('streakVal').textContent = streak;
+
+  setTimeout(() => {
+    qi++;
+    if (qi < allQuestions.length){ renderQuestion(); } else { endQuiz(); }
+  }, 1900);
+}
+
+function endQuiz(){
+  clearInterval(timerHandle);
+  quizScreen.style.display = 'none';
+  resultScreen.style.display = 'block';
+  document.getElementById('progressFill').style.width = '100%';
+
+  const tr = t().t1417;
+  const total = allQuestions.length;
+  document.getElementById('resultScoreText').textContent = score + ' / ' + total + '  (' + timer + ' ' + tr.timerSuffix + ')';
+
+  let badge = '🥉', msg = tr.resultIntro;
+  const ratio = score / total;
+  if (ratio === 1){ badge = '💎'; msg = tr.resultPerfect; }
+  else if (ratio >= 0.8){ badge = '🥇'; msg = tr.resultGreat; }
+  else if (ratio >= 0.6){ badge = '🥈'; msg = tr.resultGood; }
+  document.getElementById('resultBadge').textContent = badge;
+  document.getElementById('resultMsg').textContent = msg;
+
+  const key = BEST_KEY + roundLen;
+  let best = 0;
+  try { best = parseInt(localStorage.getItem(key) || '0', 10); } catch(e){ best = 0; }
+  if (score > best){
+    best = score;
+    try { localStorage.setItem(key, String(best)); } catch(e){}
+  }
+  document.getElementById('resultBest').textContent = tr.bestScoreLabel.replace('{total}', total).replace('{best}', best).replace('{total}', total);
+}
+
+function backToModeSelect(){
+  clearInterval(timerHandle);
+  quizScreen.style.display = 'none';
+  resultScreen.style.display = 'none';
+  modeSelect.style.display = 'block';
+}
+
+function buildLangSwitcher(){
+  const el = document.getElementById('langSwitcher');
+  el.innerHTML = '';
+  ['fr','en','es','de','it','ar','zh'].forEach(lang => {
+    const btn = document.createElement('button');
+    btn.className = 'lang-btn' + (lang === currentLang ? ' active' : '');
+    btn.textContent = lang.toUpperCase();
+    btn.addEventListener('click', () => {
+      currentLang = lang;
+      localStorage.setItem(STORAGE_KEY, lang);
+      backToModeSelect();
+      applyStaticText();
+      buildLangSwitcher();
+    });
+    el.appendChild(btn);
+  });
+}
+
+document.querySelectorAll('.mode-card').forEach(card => {
+  card.addEventListener('click', () => startQuiz(parseInt(card.dataset.len, 10)));
+});
+document.getElementById('playAgainBtn').addEventListener('click', backToModeSelect);
+
+applyStaticText();
+buildLangSwitcher();
+
+function nativeShare(platform) {
+  const data = { title: 'Volcans, séismes et phénomènes naturels', text: 'Découvre Volcans, séismes et phénomènes naturels 🌋', url: 'https://japprendslesvolcansetseismes.netlify.app/' };
+  if (navigator.share) {
+    navigator.share(data).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(data.url)
+      .then(() => alert('Lien copié ! Colle-le sur ' + platform + '.'))
+      .catch(() => alert('Copie ce lien : ' + data.url));
+  }
+}
+</script>
+
+</body>
+</html>

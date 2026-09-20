@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Volcans, séismes et phénomènes naturels — activité 3-6 ans</title>
+<meta name="description" content="Jeu éducatif gratuit pour découvrir les volcans et les séismes, dès 3 ans." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Volcans, séismes et phénomènes naturels" />
+<meta property="og:description" content="Jeu éducatif gratuit pour découvrir les volcans et les séismes, dès 3 ans." />
+<link rel="canonical" href="https://joel3500.github.io/japprends_les_volcans_et_seismes/tier_3_6.html" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  #langSwitcher { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 12px 12px 0; width: 100%; margin-bottom: 45px; }
+  .lang-btn { background: var(--clr-card); border: 1px solid var(--clr-muted); color: var(--clr-text); border-radius: 999px; font-family: inherit; font-size: .78rem; font-weight: 700; padding: 5px 11px; cursor: pointer; box-shadow: var(--shadow-soft); transition: background .2s, transform .15s; }
+  .lang-btn:hover { transform: translateY(-1px); }
+  .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  @media (max-width: 600px) { #langSwitcher { margin-bottom: 40px; } .lang-btn { font-size: .7rem; padding: 4px 8px; } }
+  .footer-support { margin-top: 10px; font-size: .82rem; color: var(--clr-muted); }
+  .footer-support-link { color: var(--accent); font-weight: 700; text-decoration: underline; }
+  .footer-support-link:hover { color: var(--accent-dark); }
+  .footer-share { font-weight: 700; font-size: .85rem; color: #1b3a5c; margin: 16px 0 0; }
+  .share-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+  .share-btn { display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: .78rem; font-weight: 700; text-decoration: none; color: #fff; transition: opacity .15s; font-family: inherit; cursor: pointer; border: none; }
+  .share-btn:hover { opacity: .85; color: #fff; }
+  .share-whatsapp  { background: #4fce74; }
+  .share-facebook  { background: #5b8ef0; }
+  .share-twitter   { background: #8b9db7; }
+  .share-linkedin  { background: #4a90d9; }
+  .share-telegram  { background: #4cb8e8; }
+  .share-snapchat  { background: #f7d000; color: #1a1a1a; }
+  .share-snapchat:hover { color: #1a1a1a; }
+  .share-instagram { background: #d1436b; }
+  .share-tiktok    { background: #ee2b59; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Volcans, séismes et phénomènes naturels",
+  "description": "Jeu éducatif gratuit pour découvrir les volcans et les séismes, dès 3 ans.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (navigateur web)",
+  "inLanguage": ["fr"],
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" },
+  "audience": { "@type": "PeopleAudience", "suggestedMinAge": 3 },
+  "author": { "@type": "Person", "name": "Joel Sandé" }
+}
+</script>
+</head>
+<body>
+
+<div id="langSwitcher"></div>
+
+<nav class="page-nav" aria-label="Choisir une tranche d'âge">
+  <a href="index.html" id="navHome">🏠 Accueil</a>
+  <a href="tier_3_6.html" aria-current="page" id="navT36">🐣 3-6 ans</a>
+  <a href="tier_7_10.html" id="navT710">🧭 7-10 ans</a>
+  <a href="tier_11_13.html" id="navT1113">🧠 11-13 ans</a>
+  <a href="tier_14_17.html" id="navT1417">🎓 14-17 ans</a>
+</nav>
+
+<header class="hero">
+  <h1 id="heroTitle">🌋 Volcans, séismes et phénomènes naturels</h1>
+  <p class="tagline" id="heroTagline">Clique sur chaque carte pour découvrir un secret sur les volcans et les séismes !</p>
+  <div class="progress">
+    <span class="stars" id="starsRow">☆☆☆☆☆☆</span>
+    <span class="count"><span id="foundCount">0</span> / 6 <span id="foundSuffix">trouvés</span></span>
+  </div>
+</header>
+
+<main>
+  <div class="map-wrap">
+    <div class="tile-grid" id="tileGrid"></div>
+  </div>
+</main>
+
+<div class="win-banner" id="winBanner">
+  <h2 id="winTitle">🎉 Bravo, explorateur·rice !</h2>
+  <p id="winText">Tu as découvert 6 secrets amusants !</p>
+  <button class="pill primary" id="replayBtn">🔄 Rejouer</button>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="card">
+    <span class="big-emoji" id="cardEmoji">✨</span>
+    <h2 id="cardTitle">Titre</h2>
+    <p class="fact" id="cardFact">Fait amusant ici.</p>
+    <div class="btn-row">
+      <button class="pill listen" id="listenBtn">🔊 Écouter</button>
+      <button class="pill primary" id="closeBtn">Continuer</button>
+    </div>
+    <p class="listen-hint" id="listenHint"></p>
+  </div>
+</div>
+
+<footer>
+  <p id="footerText">&copy; Volcans, séismes et phénomènes naturels — à but éducatif, dès 3 ans. Maternelle, garderie, jeunesse.<br>Merci de partager ce jeu éducatif gratuit !</p>
+    <p class="footer-share" id="footerShare">Partage-le à tout le monde — ça me donne la force de rester productif !</p>
+  <div class="share-buttons">
+    <a class="share-btn share-whatsapp" href="https://wa.me/?text=D%C3%A9couvre%20Volcans%2C%20s%C3%A9ismes%20et%20ph%C3%A9nom%C3%A8nes%20naturels%20%F0%9F%8C%8B%20https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F&text=D%C3%A9couvre%20Volcans%2C%20s%C3%A9ismes%20et%20ph%C3%A9nom%C3%A8nes%20naturels%20%F0%9F%8C%8B" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+    <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a class="share-btn share-telegram" href="https://t.me/share/url?url=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F&text=D%C3%A9couvre%20Volcans%2C%20s%C3%A9ismes%20et%20ph%C3%A9nom%C3%A8nes%20naturels%20%F0%9F%8C%8B" target="_blank" rel="noopener noreferrer">Telegram</a>
+    <a class="share-btn share-snapchat" href="https://www.snapchat.com/scan?attachmentUrl=https%3A%2F%2Fjapprendslesvolcansetseismes.netlify.app%2F" target="_blank" rel="noopener noreferrer">Snapchat</a>
+    <button class="share-btn share-instagram" type="button" onclick="nativeShare('Instagram')">Instagram</button>
+    <button class="share-btn share-tiktok" type="button" onclick="nativeShare('TikTok')">TikTok</button>
+  </div>
+  <p class="footer-support" id="footerSupport">
+    <a class="footer-support-link" id="donateLink" href="https://passeportdusavoir.netlify.app/don.html" target="_blank" rel="noopener noreferrer">❤️ Faire un don</a><span id="footerSupportNote"> — les dons aident à financer ce site et à le garder gratuit pour tout le monde.</span>
+  </p>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+const STORAGE_KEY = 'japprends_les_volcans_et_seismesLang';
+let currentLang = getLang(STORAGE_KEY);
+function t(){ return GAME_TRANSLATIONS[currentLang]; }
+function DATA(){ return t().t36.data; }
+
+const ITEM_IDS = Object.keys(GAME_TRANSLATIONS.fr.t36.data);
+const TOTAL = ITEM_IDS.length;
+
+const grid = document.getElementById('tileGrid');
+const found = new Set();
+const overlay = document.getElementById('overlay');
+const cardEmoji = document.getElementById('cardEmoji');
+const cardTitle = document.getElementById('cardTitle');
+const cardFact = document.getElementById('cardFact');
+const listenBtn = document.getElementById('listenBtn');
+const closeBtn = document.getElementById('closeBtn');
+const foundCountEl = document.getElementById('foundCount');
+const starsRow = document.getElementById('starsRow');
+const winBanner = document.getElementById('winBanner');
+const replayBtn = document.getElementById('replayBtn');
+
+let currentId = null;
+const supportsSpeech = 'speechSynthesis' in window;
+const LISTEN_UNSUPPORTED = {
+  fr: "Ton navigateur ne sait pas encore lire à voix haute. Essaie avec Chrome ou Safari !",
+  en: "Your browser can't read aloud yet. Try Chrome or Safari!",
+  es: "Tu navegador aún no puede leer en voz alta. ¡Prueba con Chrome o Safari!",
+  de: "Dein Browser kann noch nicht vorlesen. Probiere es mit Chrome oder Safari!",
+  it: "Il tuo browser non può ancora leggere ad alta voce. Prova con Chrome o Safari!",
+  ar: "متصفحك لا يمكنه القراءة بصوت عالٍ بعد. جرب Chrome أو Safari!",
+  zh: "你的浏览器还不能朗读。请尝试使用Chrome或Safari！"
+};
+
+function buildGrid(){
+  grid.innerHTML = '';
+  const data = DATA();
+  ITEM_IDS.forEach(id => {
+    const d = data[id];
+    const btn = document.createElement('button');
+    btn.className = 'tile' + (found.has(id) ? ' found' : '');
+    btn.dataset.id = id;
+    btn.setAttribute('aria-label', d.name);
+    btn.innerHTML = '<span class="t-emoji">' + d.emoji + '</span><span class="t-label">' + d.name + '</span>';
+    btn.addEventListener('click', () => openCard(id));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openCard(id); }
+    });
+    grid.appendChild(btn);
+  });
+}
+
+function applyStaticText(){
+  const tr = t();
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
+  document.title = tr.t36.title + " — activité 3-6 ans";
+  document.getElementById('navHome').textContent = tr.nav.home;
+  document.getElementById('navT36').textContent = tr.nav.t36;
+  document.getElementById('navT710').textContent = tr.nav.t710;
+  document.getElementById('navT1113').textContent = tr.nav.t1113;
+  document.getElementById('navT1417').textContent = tr.nav.t1417;
+  document.getElementById('heroTitle').textContent = '🌋 ' + tr.t36.title;
+  document.getElementById('heroTagline').textContent = tr.t36.tagline;
+  document.getElementById('foundSuffix').textContent = tr.t36.foundSuffix;
+  document.getElementById('winTitle').textContent = tr.t36.winTitle;
+  document.getElementById('winText').textContent = tr.t36.winText.replace('{n}', TOTAL);
+  document.getElementById('replayBtn').textContent = tr.t36.replayBtn;
+  document.getElementById('listenBtn').textContent = tr.t36.listenBtn;
+  document.getElementById('closeBtn').textContent = tr.t36.closeBtn;
+  document.getElementById('footerText').innerHTML = '&copy; ' + tr.t36.footer;
+  document.getElementById('donateLink').textContent = tr.donate;
+  document.getElementById('footerSupportNote').textContent = ' — ' + tr.donateNote;
+  document.getElementById('footerShare').textContent = tr.shareText;
+}
+
+function openCard(id){
+  currentId = id;
+  const d = DATA()[id];
+  cardEmoji.textContent = d.emoji;
+  cardTitle.textContent = d.name;
+  cardFact.textContent = d.fact;
+  document.getElementById('listenHint').textContent = '';
+  overlay.classList.add('open');
+
+  if (!found.has(id)){
+    found.add(id);
+    document.querySelector('.tile[data-id="'+id+'"]').classList.add('found');
+    updateProgress();
+  }
+}
+
+function closeCard(){
+  overlay.classList.remove('open');
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  if (found.size === TOTAL) setTimeout(celebrate, 250);
+}
+
+function updateProgress(){
+  foundCountEl.textContent = found.size;
+  let stars = '';
+  for (let i=0;i<TOTAL;i++) stars += (i < found.size ? '★' : '☆');
+  starsRow.textContent = stars;
+}
+
+/* Voix plus enjouée/aiguë pour se rapprocher d'une voix d'enfant (pas de vraie voix
+   "enfant" garantie par le navigateur : on ajuste pitch + débit sur la voix système). */
+function speak(){
+  if (!currentId) return;
+  if (!supportsSpeech){
+    document.getElementById('listenHint').textContent = LISTEN_UNSUPPORTED[currentLang] || LISTEN_UNSUPPORTED.fr;
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const d = DATA()[currentId];
+  const u = new SpeechSynthesisUtterance(d.name + '. ' + d.fact);
+  u.lang = t().speechLang;
+  u.rate = 0.95;
+  u.pitch = 1.4;
+  window.speechSynthesis.speak(u);
+}
+
+function celebrate(){
+  winBanner.classList.add('show');
+  const colors = ['#6C9BCF','#F2A65A','#E85D75','#7FB77E','#F4B942','#8FC7DE','#B58AC7'];
+  for (let i=0;i<60;i++){
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+    c.style.animation = 'fall ' + (2.2 + Math.random()*1.6) + 's linear forwards';
+    c.style.transform = 'rotate(' + Math.floor(Math.random()*360) + 'deg)';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 4200);
+  }
+}
+
+function resetGame(){
+  found.clear();
+  document.querySelectorAll('.tile').forEach(el => el.classList.remove('found'));
+  updateProgress();
+  winBanner.classList.remove('show');
+}
+
+function buildLangSwitcher(){
+  const el = document.getElementById('langSwitcher');
+  el.innerHTML = '';
+  ['fr','en','es','de','it','ar','zh'].forEach(lang => {
+    const btn = document.createElement('button');
+    btn.className = 'lang-btn' + (lang === currentLang ? ' active' : '');
+    btn.textContent = lang.toUpperCase();
+    btn.addEventListener('click', () => {
+      currentLang = lang;
+      localStorage.setItem(STORAGE_KEY, lang);
+      applyStaticText();
+      buildGrid();
+      buildLangSwitcher();
+    });
+    el.appendChild(btn);
+  });
+}
+
+listenBtn.addEventListener('click', speak);
+closeBtn.addEventListener('click', closeCard);
+replayBtn.addEventListener('click', resetGame);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closeCard(); });
+
+const styleTag = document.createElement('style');
+styleTag.textContent = '@keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity:.3; } }';
+document.head.appendChild(styleTag);
+
+applyStaticText();
+buildGrid();
+buildLangSwitcher();
+
+function nativeShare(platform) {
+  const data = { title: 'Volcans, séismes et phénomènes naturels', text: 'Découvre Volcans, séismes et phénomènes naturels 🌋', url: 'https://japprendslesvolcansetseismes.netlify.app/' };
+  if (navigator.share) {
+    navigator.share(data).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(data.url)
+      .then(() => alert('Lien copié ! Colle-le sur ' + platform + '.'))
+      .catch(() => alert('Copie ce lien : ' + data.url));
+  }
+}
+</script>
+
+</body>
+</html>
